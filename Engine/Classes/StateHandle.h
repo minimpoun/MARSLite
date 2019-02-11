@@ -27,14 +27,21 @@ public:
 
 	StateHandle(sf::RenderWindow* InWindow);
 	virtual ~StateHandle();
-
-	virtual void DestroyState() = 0;
-
+	
+	const bool& IsPendingKill();
+	
 	virtual void Refresh(const float& DeltaTime) = 0;
+	virtual void UpdateInput(const float& DeltaTime) = 0;
 	virtual void Draw(sf::RenderTarget* InTarget = nullptr) = 0;
-
+	virtual void UpdateState() = 0;
+	virtual void OnStateKilled() = 0;
+	
+	virtual void KillState();
+	
+	
 private:
 
+	bool PendingKill;
 	sf::RenderTarget* Window;
 	std::vector<sf::Texture> Textures;
 };

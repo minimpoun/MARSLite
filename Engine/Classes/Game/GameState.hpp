@@ -11,9 +11,11 @@ public:
 	GameState(sf::RenderWindow* InWindow);
 	virtual ~GameState();
 
-	virtual void DestroyState();
-
-	virtual void Refresh(const float& DeltaTime);
-	virtual void Draw(sf::RenderTarget* InTarget = nullptr);
+	virtual void Refresh(const float& DeltaTime) override;
+	virtual void UpdateInput(const float& DeltaTime) override;
+	virtual void Draw(sf::RenderTarget* InTarget = nullptr) override;
+	virtual void OnStateKilled() override;
+	virtual void UpdateState() override;
+	
 };
 }

@@ -1,3 +1,6 @@
+[core]
+editor=code
+
 ### CMake
 CMakeCache.txt
 CMakeFiles

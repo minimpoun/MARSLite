@@ -10,8 +10,6 @@ void Application::Shutdown()
 
 Application::~Application()
 {
-	LOG("deleted")
-	
 	delete Window;
 
 	while (!States.empty())
@@ -103,8 +101,6 @@ void Application::Run()
 	{
 		Update(); // Updates game code and events
 		Render(); // Updates viewport
-
-		std::cout << Delta << std::endl;
 	}
 }
 
@@ -116,6 +112,18 @@ void Application::Update()
 	if (!States.empty())
 	{
 		States.top()->Refresh(Delta);
+		
+		if (States.top()->IsPendingKill())
+		{
+			States.top()->KillState();
+			delete States.top();
+			States.pop();
+		}
+	}
+	else
+	{
+		Shutdown();
+		Window->close(); // TODO implement proper close
 	}
 }
 
