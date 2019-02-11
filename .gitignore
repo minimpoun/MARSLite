@@ -61,7 +61,7 @@ fabric.properties
 .idea/httpRequests
 
 ### VisualStudioCode
-.vscode/*
+.vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -110,7 +110,7 @@ DerivedData/
 *.so
 *.dylib
 *.dll
-!Thirdparty/Lib/*
+!Thirdparty/Lib/SFML/*.so
 
 # Fortran module files
 *.mod
@@ -121,10 +121,11 @@ DerivedData/
 *.la
 *.a
 *.lib
-!Thirdparty/Lib/*
 
 # Executables
 *.exe
 *.out
 *.app
 
+.Build.sh.swp
+Bin/MARSLite
