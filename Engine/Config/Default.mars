@@ -1,0 +1,8 @@
+# Project Config
+
+Title = "Config Test"
+ResolutionWidth = 800
+ResolutionHeight = 800
+EnableVSync = false
+LimitFPS = true
+MaxFPS = 120
