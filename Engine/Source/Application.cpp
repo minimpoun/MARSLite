@@ -1,11 +1,12 @@
 #include "Application.h"
 #include "Utility/FileManager.hpp"
+#include "Game/GameState.hpp"
 
 using namespace MARS;
 
 void Application::Shutdown()
 {
-	this->~Application();
+
 }
 
 Application::~Application()
@@ -81,33 +82,23 @@ void Application::InitApplication(String Title, int w, int h)
 void Application::RegisterStates()
 {
 	States.push(new GameState(Window));
-}
-
-void Application::Render()
-{
-	Window->clear();
-
-	if (!States.empty())
-	{
-		States.top()->Draw(Window);
-	}
-
-	Window->display();
+	States.top()->OnConstruct();
 }
 
 void Application::Run()
 {
-	while (Window->isOpen())
+	while (Window && Window->isOpen() && !AwaitingExit)
 	{
-		Update(); // Updates game code and events
+		Tick(); // Updates game code and events
 		Render(); // Updates viewport
 	}
 }
 
-void Application::Update()
+void Application::Tick()
 {
+	Delta = DeltaClock.restart().asSeconds();
+	
 	HandleEvents();
-	Tick();
 
 	if (!States.empty())
 	{
@@ -122,9 +113,22 @@ void Application::Update()
 	}
 	else
 	{
-		Shutdown();
-		Window->close(); // TODO implement proper close
+		// TODO implement proper close
+		AwaitingExit = true;
+		Event.type = sf::Event::Closed;
 	}
+}
+
+void Application::Render()
+{
+	Window->clear();
+	
+	if (!States.empty())
+	{
+		States.top()->Draw(Window);
+	}
+	
+	Window->display();
 }
 
 void Application::HandleEvents()
@@ -135,7 +139,3 @@ void Application::HandleEvents()
 	}
 }
 
-void Application::Tick()
-{
-	Delta = DeltaClock.restart().asSeconds();
-}

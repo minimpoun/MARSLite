@@ -28,7 +28,6 @@ void GameState::Refresh(const float& DeltaTime)
 
 void GameState::Draw(sf::RenderTarget* InTarget)
 {
-
 }
 
 void GameState::UpdateInput(const float& DeltaTime)
@@ -42,4 +41,8 @@ void GameState::UpdateInput(const float& DeltaTime)
 void GameState::UpdateState()
 {
 
+}
+
+void GameState::OnConstruct()
+{
 }

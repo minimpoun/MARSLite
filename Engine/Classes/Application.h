@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Game/GameState.hpp"
+#include "Common.h"
+#include "StateHandle.h"
 
 struct ApplicationSettings
 {
@@ -38,13 +39,13 @@ public:
 	virtual ~Application();
 
 	static void Register(ApplicationSettings Settings, std::shared_ptr<Application>& OutApplication);
-
+	void ParseConsole(int cnt, char** cmd){}
+	
 	virtual void Render();
-	virtual void Update();
+	virtual void Tick();
 	virtual void Run();
 	virtual void HandleEvents();
-	virtual void Tick();
-
+	
 	virtual void Shutdown();
 
 protected:
@@ -53,6 +54,8 @@ protected:
 
 private:
 
+	bool AwaitingExit;
+	
 	void RegisterStates();
 
 	std::stack<StateHandle*> States;
