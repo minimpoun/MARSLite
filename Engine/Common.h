@@ -9,6 +9,9 @@
 #include <stack>
 #include <map>
 #include <memory>
+#include <typeinfo>
+#include <type_traits>
+#include <functional>
 
 #include "SFML/Graphics.hpp"
 #include "SFML/System.hpp"

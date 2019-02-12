@@ -3,9 +3,10 @@
 #include "Common.h"
 #include "StateHandle.h"
 
-namespace MARS
-{
-class GameState : public MARS::StateHandle
+class Character;
+class Actor;
+
+class GameState : public StateHandle
 {
 public:
 
@@ -19,7 +20,12 @@ public:
 	virtual void OnStateKilled() override;
 	virtual void UpdateState() override;
 
+	void SetupPlayerInput(Actor* Player);
+	
+	
+	
 private:
+	
+	Character* TestPlayer;
 
 };
-}

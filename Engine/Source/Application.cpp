@@ -22,7 +22,7 @@ Application::~Application()
 
 void Application::Register(ApplicationSettings Settings, std::shared_ptr<Application>& OutApplication)
 {
-	std::shared_ptr<MARS::Application> _App = std::make_shared<MARS::Application>();
+	std::shared_ptr<Application> _App = std::make_shared<Application>();
 	
 	if (_App)
 	{
@@ -49,7 +49,7 @@ void Application::InitApplication(String Title, int w, int h)
 		}
 		else
 		{
-			LOG("Loaded Default MARS Config Files")		
+			LOG("Loaded Default MARS Config Files")
 		}	
 	
 		_FM->Get("Title", Title);

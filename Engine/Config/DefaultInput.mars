@@ -1,0 +1,7 @@
+# Default Input Binds
+# A project would want to define it's own keybinds
+
+MoveForward = 22
+MoveBackward = 18
+MoveRight = 3
+MoveLeft = 0

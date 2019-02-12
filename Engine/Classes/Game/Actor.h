@@ -2,25 +2,48 @@
 
 #include "Common.h"
 
+class FileManager;
+
 class Actor
 {
 public:
-
+	
 	Actor();
-	~Actor();
 	
-	virtual void Tick(const float& DeltaTime) = 0;
-	virtual void Draw(sf::RenderTarget* InTarget) = 0;
+	virtual ~Actor();
 	
+	virtual void Tick(const float& DeltaTime);
+	
+	virtual void Draw(sf::RenderTarget* InTarget)
+	{ }
+	
+	virtual void UpdatePlayerInput()
+	{ }
+	
+	virtual void OnConstruct();
+	
+	std::vector<Actor*> GetAllInputActors() const { return InputActors; }
+
 protected:
 	
-	float GetDelta() const;
+	virtual void SetupPlayerInput();
 	
-	void SetMaxWalkSpeed(float& NewSpeed);
+	float GetDelta() const;
+	float GetMaxWalkSpeed() const { return MaxWalkSpeed; }
+	
+	void SetMaxWalkSpeed(float NewSpeed);
+	
+	void BindAction(String ActionName, std::function<void(float)> const& Callback);
+	
+	void BindAxis(String AxisName, void(Actor::*Axis)(float));
 	
 private:
-
-	float MaxWalkSpeed = 100.f;
+	
+	FileManager* FM;
+	
+	static std::vector<Actor*> InputActors;
+	
+	float MaxWalkSpeed = 200.f;
 	float m_DeltaTime;
 	
 };

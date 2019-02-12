@@ -31,7 +31,7 @@ link_directories(
 	${MARSLite_SOURCE_DIR}/Thirdparty/Lib/
 )
 
-add_executable(MARSLite ${HDRS} ${SRCS} Engine/Source/Game/Actor.cpp Engine/Classes/Game/Actor.h)
+add_executable(MARSLite ${HDRS} ${SRCS})
 
 target_link_libraries( MARSLite
 	${SFML_LIBRARIES}
