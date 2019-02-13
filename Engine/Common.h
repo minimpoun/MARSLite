@@ -8,6 +8,7 @@
 #include <sstream>
 #include <stack>
 #include <map>
+#include <unordered_map>
 #include <memory>
 #include <typeinfo>
 #include <type_traits>

@@ -36,6 +36,7 @@ class Application
 {
 public:
 	
+	Application();
 	virtual ~Application();
 
 	static void Register(ApplicationSettings Settings, std::shared_ptr<Application>& OutApplication);
@@ -65,5 +66,12 @@ private:
 
 	sf::RenderWindow* Window;
 	sf::Event Event;
+	
+	sf::Text FPSText;
+	sf::Clock Delay;
+	sf::Clock FPSTimer;
+	
+	float FPS;
+	int64 FrameCount;
 };
 }

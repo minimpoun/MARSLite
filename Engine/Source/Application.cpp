@@ -1,12 +1,20 @@
-#include "Application.h"
+
+#include <Classes/Application.h>
+
 #include "Utility/FileManager.hpp"
+#include "Utility/ResourceManager.hpp"
 #include "Game/GameState.hpp"
+#include "Utility/ResouceContainer.h"
 
 using namespace MARS;
 
-void Application::Shutdown()
+Application::Application()
 {
-
+	FPSText.move(0, 0);
+	FPSText.setOutlineColor(sf::Color::Black);
+	FPSText.setFillColor(sf::Color::Green);
+	FPSText.setOutlineThickness(2);
+	FPSText.setFont(ResourceContainer::Get().Fonts["arial"]);
 }
 
 Application::~Application()
@@ -18,6 +26,11 @@ Application::~Application()
 		delete States.top();
 		States.pop();
 	}
+}
+
+void Application::Shutdown()
+{
+
 }
 
 void Application::Register(ApplicationSettings Settings, std::shared_ptr<Application>& OutApplication)
@@ -98,6 +111,15 @@ void Application::Tick()
 {
 	Delta = DeltaClock.restart().asSeconds();
 	
+	FrameCount++;
+	
+	if (Delay.getElapsedTime().asSeconds() > 0.2)
+	{
+		FPS = FrameCount / FPSTimer.restart().asSeconds();
+		FrameCount = 0;
+		Delay.restart();
+	}
+	
 	HandleEvents();
 
 	if (!States.empty())
@@ -106,7 +128,7 @@ void Application::Tick()
 		
 		if (States.top()->IsPendingKill())
 		{
-			States.top()->KillState();
+			States.top()->OnStateKilled();
 			delete States.top();
 			States.pop();
 		}
@@ -123,6 +145,9 @@ void Application::Render()
 {
 	Window->clear();
 	
+	FPSText.setString("FPS: " + std::to_string((int)FPS));
+	Window->draw(FPSText);
+	
 	if (!States.empty())
 	{
 		States.top()->Draw(Window);
@@ -135,7 +160,9 @@ void Application::HandleEvents()
 {
 	while (Window->pollEvent(this->Event))
 	{
-		if (this->Event.type == sf::Event::Closed) Window->close();
+		if (this->Event.type == sf::Event::Closed)
+		{
+			Window->close();
+		}
 	}
 }
-

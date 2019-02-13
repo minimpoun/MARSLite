@@ -48,8 +48,9 @@ void Actor::BindAction(String ActionName, std::function<void(float)> const& Call
 	}
 }
 
-void Actor::BindAxis(String AxisName, void (Actor::* Axis)(float))
+void Actor::BindAxis(String AxisName, std::function<void(float)> const& Callback)
 {
+	// TODO figure out a way to handle axis and controller support
 }
 
 void Actor::Tick(const float& DeltaTime)

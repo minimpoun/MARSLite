@@ -35,7 +35,7 @@ protected:
 	
 	void BindAction(String ActionName, std::function<void(float)> const& Callback);
 	
-	void BindAxis(String AxisName, void(Actor::*Axis)(float));
+	void BindAxis(String AxisName, std::function<void(float)> const& Callback);
 	
 private:
 	

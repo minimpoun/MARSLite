@@ -20,7 +20,6 @@ protected:
 	
 	virtual void SetupPlayerInput() override;
 	
-	void BoostMovementSpeed(const float& BoostAmount);
 	void MoveForward(float Val);
 	void MoveBackward(float Val);
 	void MoveRight(float Val);

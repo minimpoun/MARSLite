@@ -31,7 +31,7 @@ link_directories(
 	${MARSLite_SOURCE_DIR}/Thirdparty/Lib/
 )
 
-add_executable(MARSLite ${HDRS} ${SRCS})
+add_executable(MARSLite ${HDRS} ${SRCS} Engine/Source/Utility/ResourceContainer.cpp)
 
 target_link_libraries( MARSLite
 	${SFML_LIBRARIES}

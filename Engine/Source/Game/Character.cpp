@@ -24,11 +24,6 @@ void Character::OnConstruct()
 	
 }
 
-void Character::BoostMovementSpeed(const float& BoostAmount)
-{
-
-}
-
 void Character::MoveForward(float Val)
 {
 	Shape.move(0.f, -Val * GetMaxWalkSpeed() * GetDelta());
