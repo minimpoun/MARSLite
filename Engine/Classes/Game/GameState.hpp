@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Common.h"
-#include "StateHandle.h"
+#include "State.h"
 
 class Character;
 class Actor;
+class Whatever;
 
-class GameState : public StateHandle
+class GameState : public State
 {
 public:
 
@@ -14,7 +15,7 @@ public:
 	virtual ~GameState();
 
 	virtual void OnConstruct() override;
-	virtual void Refresh(const float& DeltaTime) override;
+	virtual void TickState(const float& DeltaTime) override;
 	virtual void UpdateInput(const float& DeltaTime) override;
 	virtual void Draw(sf::RenderTarget* InTarget = nullptr) override;
 	virtual void OnStateKilled() override;
@@ -27,5 +28,6 @@ public:
 private:
 	
 	Character* TestPlayer;
+	Whatever* TestWhatever;
 
 };

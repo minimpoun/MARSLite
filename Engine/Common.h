@@ -7,6 +7,8 @@
 #include <fstream>
 #include <sstream>
 #include <stack>
+#include <stdio.h>
+#include <stdarg.h>
 #include <map>
 #include <unordered_map>
 #include <memory>

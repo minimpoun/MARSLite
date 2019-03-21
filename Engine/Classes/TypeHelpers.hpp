@@ -1,7 +1,5 @@
 #pragma once
 
-#define LOG(x) std::cout << x << std::endl;
-
 namespace InitSetting
 {
 	enum Type
@@ -23,3 +21,13 @@ using int64		=	long		long;
 using uint64	=	unsigned	long  long;
 
 using String 	=	std::string;
+
+template<class ...T>
+static const void PrintLog(String Msg, T...Args)
+{
+	std::printf(Msg.c_str(), Args...);
+	std::cout << std::endl;
+}
+
+#define LOG(Msg) std::cout << Msg << std::endl;
+#define FMT_LOG(Msg, args...) PrintLog(Msg, args);

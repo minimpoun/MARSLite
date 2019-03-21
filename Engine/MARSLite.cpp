@@ -1,12 +1,15 @@
-#include "Classes/Application.h"
+#include "MARSLite.h"
 
-int main(int argc, char* argv[])
+int main(int Argc, char** Argv)
 {
-	std::shared_ptr<MARS::Application> App;
-	
-	MARS::Application::Register(ApplicationSettings(), App);
-	App->ParseConsole(argc, argv);
+	std::unique_ptr<MARS::Application> App = std::make_unique<MARS::Application>();
 	App->Run();
+	App->Shutdown();
+	
+	if (App)
+	{
+		App.release();
+	}
 	
 	return 0;
 }

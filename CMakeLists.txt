@@ -5,6 +5,8 @@ project(MARSLite)
 add_definitions(
 	-c
 	-Wall
+	-g
+	-O1
 )
 
 file(GLOB_RECURSE HDRS 
@@ -31,7 +33,7 @@ link_directories(
 	${MARSLite_SOURCE_DIR}/Thirdparty/Lib/
 )
 
-add_executable(MARSLite ${HDRS} ${SRCS} Engine/Source/Utility/ResourceContainer.cpp)
+add_executable(MARSLite ${HDRS} ${SRCS})
 
 target_link_libraries( MARSLite
 	${SFML_LIBRARIES}

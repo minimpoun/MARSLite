@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Common.h"
-#include "StateHandle.h"
+#include "State.h"
+
+class GameState;
 
 struct ApplicationSettings
 {
@@ -39,7 +41,6 @@ public:
 	Application();
 	virtual ~Application();
 
-	static void Register(ApplicationSettings Settings, std::shared_ptr<Application>& OutApplication);
 	void ParseConsole(int cnt, char** cmd){}
 	
 	virtual void Render();
@@ -52,15 +53,23 @@ public:
 protected:
 
 	virtual void InitApplication(String Title = "MARS Lite", int w = 800, int h = 600);
-
+	virtual void RegisterStates();
+	
 private:
 
-	bool AwaitingExit;
+	void DrawFPS(bool bEnabled);
 	
-	void RegisterStates();
-
-	std::stack<StateHandle*> States;
-
+	void SetupFPS();
+	
+	void UpdateDeltaTime();
+	void UpdateFrameCount();
+	
+	bool bShowStats;
+	
+	GameState* BaseGameState;
+	
+	std::stack<State*> States;
+	
 	sf::Clock DeltaClock;
 	float Delta;
 

@@ -53,4 +53,5 @@ Character::Character()
 {
 	Shape.setSize(sf::Vector2f(50.f, 50.f));
 	Shape.setPosition(50.f, 50.f);
+	Shape.setFillColor(sf::Color::Blue);
 }

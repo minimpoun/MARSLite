@@ -1,8 +1,9 @@
 # Project Config
 
-Title = "MARS Lite"
+Title = MARS Lite
 ResolutionWidth = 800
 ResolutionHeight = 600
 EnableVSync = false
-LimitFPS = false
+LimitFPS = true
 MaxFPS = 60
+ShowStats = true
