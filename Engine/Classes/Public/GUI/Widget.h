@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Common.h"
-#include "Classes/Utility/ResourceManager.hpp"
+#include "Source/Utility/ResourceManager.hpp"
 
 class Widget
 {

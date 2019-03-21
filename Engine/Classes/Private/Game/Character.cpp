@@ -1,4 +1,4 @@
-#include <Classes/Game/Character.h>
+#include <Classes/Public/Game/Character.h>
 
 void Character::Tick(const float& DeltaTime)
 {

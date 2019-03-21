@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Common.h"
-#include "Game/Actor.h"
+#include "Actor.h"
 
 class Character : public Actor
 {

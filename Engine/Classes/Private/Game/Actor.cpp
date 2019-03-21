@@ -1,5 +1,5 @@
-#include <Classes/Game/Actor.h>
-#include "Utility/FileManager.hpp"
+#include <Classes/Public/Game/Actor.h>
+#include "Source/Utility/FileManager.hpp"
 
 std::vector<Actor*> Actor::InputActors = {};
 

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Common.h"
-#include "Classes/Utility/NoCopy.h"
-#include "Classes/Utility/NoMove.h"
-#include "Classes/Utility/ResourceManager.hpp"
+#include "NoCopy.h"
+#include "NoMove.h"
+#include "ResourceManager.hpp"
 
 class ResourceContainer : public NoCopy, public NoMove
 {

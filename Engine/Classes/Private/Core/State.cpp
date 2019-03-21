@@ -1,7 +1,7 @@
 
-#include <Classes/State.h>
+#include <Classes/Public/Core/State.h>
 
-#include "State.h"
+#include "Classes/Public/Core/State.h"
 
 State::State(sf::RenderWindow* InWindow)
 {

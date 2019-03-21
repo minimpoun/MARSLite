@@ -1,10 +1,10 @@
 
-#include <Classes/Application.h>
+#include <Classes/Public/Core/Application.h>
 
-#include "Utility/FileManager.hpp"
-#include "Utility/ResourceManager.hpp"
-#include "Utility/ResouceContainer.h"
-#include "Game/GameState.hpp"
+#include "Source/Utility/FileManager.hpp"
+#include "Source/Utility/ResourceManager.hpp"
+#include "Source/Utility/ResouceContainer.h"
+#include "Classes/Public/Game/GameState.hpp"
 
 using namespace MARS;
 
@@ -166,7 +166,7 @@ void Application::SetupFPS()
 	FPSText.move(0, 0);
 	FPSText.setOutlineColor(sf::Color::Black);
 	FPSText.setFillColor(sf::Color::Green);
-	FPSText.setOutlineThickness(2);
+	FPSText.setOutlineThickness(1);
 	FPSText.setFont(ResourceContainer::Get().Fonts["arial"]);
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Common.h"
-#include "State.h"
+#include "Classes/Public/Core/State.h"
 
 class Character;
 class Actor;

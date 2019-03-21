@@ -1,8 +1,8 @@
 
-#include <Classes/Game/GameState.hpp>
+#include <Classes/Public/Game/GameState.hpp>
 
-#include "Game/Actor.h"
-#include "Game/Character.h"
+#include "Classes/Public/Game/Actor.h"
+#include "Classes/Public/Game/Character.h"
 
 GameState::GameState(sf::RenderWindow* InWindow)
 	: State(InWindow)

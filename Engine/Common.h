@@ -22,4 +22,4 @@
 #include "SFML/Window.hpp"
 #include "SFML/Audio.hpp"
 
-#include "TypeHelpers.hpp"
+#include "Source/TypeHelpers.hpp"

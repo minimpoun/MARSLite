@@ -2,8 +2,8 @@
 
 #include "Common.h"
 
-#include "Classes/Utility/NoCopy.h"
-#include "Classes/Utility/NoMove.h"
+#include "NoCopy.h"
+#include "NoMove.h"
 
 template <typename T>
 class ResourceManager
