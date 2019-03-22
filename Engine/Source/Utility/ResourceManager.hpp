@@ -11,8 +11,8 @@ class ResourceManager
 public:
 
 	ResourceManager(const String& Folder, const String& InFileType)
-	: EngineResFolder("/home/chris-desktop/Projects/MARS-Lite/Resources/" + Folder + "/")
-	, ResFolder("../Game/Resource/" + Folder + "/")
+	: EngineResFolder("../Resources/" + Folder + "/")
+	, ResFolder("../Game/Resources/" + Folder + "/")
 	, FileType(InFileType.front() == '.' ? InFileType : "." + InFileType)
 	{}
 	

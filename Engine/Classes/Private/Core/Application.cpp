@@ -5,6 +5,7 @@
 #include "Source/Utility/ResourceManager.hpp"
 #include "Source/Utility/ResouceContainer.h"
 #include "Classes/Public/Game/GameState.hpp"
+#include "Classes/Public/GUI/MenuState.hpp"
 
 using namespace MARS;
 
@@ -43,7 +44,7 @@ void Application::InitApplication(String Title, int w, int h)
 	std::unique_ptr<FileManager> _FM = std::make_unique<FileManager>();
 	if (_FM)
 	{
-		if (!_FM->LoadFile("../Engine/Config/Default.mars"))
+		if (!_FM->LoadFile("../Config/Default.mars"))
 		{
 			LOG("Failed to load the Default MARS Config file")
 		}
@@ -68,7 +69,7 @@ void Application::InitApplication(String Title, int w, int h)
 	Window = new sf::RenderWindow(sf::VideoMode(w, h), Title);
 	if (Window)
 	{
-		LOG("Window Created Successfully")
+		LOG("Target Created Successfully")
 	
 		Window->setVerticalSyncEnabled(EnableVSync);
 		
@@ -82,7 +83,7 @@ void Application::InitApplication(String Title, int w, int h)
 void Application::RegisterStates()
 {
 	BaseGameState = new GameState(Window);
-	States.push(BaseGameState);
+	States.push(new MenuState(Window));
 	States.top()->OnConstruct();
 }
 
@@ -167,7 +168,7 @@ void Application::SetupFPS()
 	FPSText.setOutlineColor(sf::Color::Black);
 	FPSText.setFillColor(sf::Color::Green);
 	FPSText.setOutlineThickness(1);
-	FPSText.setFont(ResourceContainer::Get().Fonts["arial"]);
+	FPSText.setFont(ResourceContainer::Get().Fonts_OTF["Dosis-Light"]);
 }
 
 void Application::DrawFPS(bool bEnabled)

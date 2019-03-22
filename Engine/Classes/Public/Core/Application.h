@@ -49,7 +49,7 @@ public:
 	virtual void HandleEvents();
 	
 	virtual void Shutdown();
-
+	
 protected:
 
 	virtual void InitApplication(String Title = "MARS Lite", int w = 800, int h = 600);

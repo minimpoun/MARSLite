@@ -31,7 +31,7 @@ void Actor::SetupPlayerInput()
 {
 	InputActors.push_back(this);
 	FM = new FileManager;
-	FM->LoadFile("../Engine/Config/DefaultInput.mars");
+	FM->LoadFile("../Config/DefaultInput.mars");
 }
 
 void Actor::BindAction(String ActionName, std::function<void(float)> const& Callback)

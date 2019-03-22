@@ -22,7 +22,7 @@ void GameState::OnStateKilled()
 
 void GameState::TickState(const float& DeltaTime)
 {
-	UpdateState();
+	UpdateMousePosition();
 	UpdateInput(DeltaTime);
 	
 	TestPlayer->Tick(DeltaTime);
@@ -52,16 +52,6 @@ void GameState::UpdateInput(const float& DeltaTime)
 	{
 		TestPlayer->GetAllInputActors()[i]->UpdatePlayerInput();
 	}
-	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-	{
-		KillState();
-	}
-}
-
-void GameState::UpdateState()
-{
-
 }
 
 void GameState::OnConstruct()

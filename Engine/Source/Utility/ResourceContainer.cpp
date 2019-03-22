@@ -6,5 +6,5 @@ ResourceContainer& ResourceContainer::Get()
 	return _Container;
 }
 
-ResourceContainer::ResourceContainer() : Fonts("Fonts", "ttf"), Textures("Textures", "png"), Sounds("Sounds", "ogg")
+ResourceContainer::ResourceContainer() : Fonts_OTF("Fonts", "otf"), Fonts_TTF("Fonts", "ttf"), Textures("Textures", "png"), Sounds("Sounds", "ogg")
 {}

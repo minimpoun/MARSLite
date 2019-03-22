@@ -12,6 +12,8 @@
 #include "Classes/Public/GUI/DropDownList.h"
 #include "Classes/Public/GUI/Textbox.h"
 #include "Classes/Public/GUI/Widget.h"
+#include "Classes/Public/Core/EngineStatics.hpp"
+
 #include "Source/Utility/FileManager.hpp"
 #include "Source/Utility/ResourceManager.hpp"
 #include "Source/Utility/ResouceContainer.h"

@@ -3,13 +3,13 @@
 int main(int Argc, char** Argv)
 {
 	std::unique_ptr<MARS::Application> App = std::make_unique<MARS::Application>();
-	App->Run();
-	App->Shutdown();
-	
 	if (App)
 	{
-		App.release();
+		App->Run();
+		App->Shutdown();
 	}
+	
+	App.release();
 	
 	return 0;
 }
