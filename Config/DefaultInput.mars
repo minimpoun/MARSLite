@@ -5,3 +5,4 @@ MoveForward = 22
 MoveBackward = 18
 MoveRight = 3
 MoveLeft = 0
+EndGame = 57

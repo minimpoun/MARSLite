@@ -1,4 +1,7 @@
 #include <Classes/Public/Game/Character.h>
+#include <Classes/Public/Core/EngineStatics.hpp>
+#include "Classes/Public/GUI/MenuState.hpp"
+#include "Classes/Public/GUI/Canvas.hpp"
 
 void Character::Tick(const float& DeltaTime)
 {
@@ -16,6 +19,7 @@ void Character::UpdatePlayerInput()
 	BindAction("MoveBackward", std::bind(&Character::MoveBackward, this, std::placeholders::_1));
 	BindAction("MoveLeft", std::bind(&Character::MoveLeft, this, std::placeholders::_1));
 	BindAction("MoveRight", std::bind(&Character::MoveRight, this, std::placeholders::_1));
+	BindAction("EndGame", std::bind(&Character::EndGame, this));
 }
 
 void Character::OnConstruct()
@@ -47,6 +51,20 @@ void Character::MoveLeft(float Val)
 void Character::SetupPlayerInput()
 {
 	Actor::SetupPlayerInput();
+}
+
+void Character::EndGame()
+{
+	auto* _MenuState = EngineStatics::GetApplication()->ConstructState<MenuState>();
+	if (_MenuState)
+	{
+		ButtonStyle _BS;
+		_BS.Size = sf::Vector2f(100.f,100.f);
+		_BS.Normal.WidgetColor = sf::Color::White;
+		_BS.Hovered.WidgetColor = sf::Color::Blue;
+		_BS.Clicked.WidgetColor = sf::Color::Green;
+		_MenuState->GetCanvas()->CreateWidget<Button>("TestButton", _BS);
+	}
 }
 
 Character::Character()

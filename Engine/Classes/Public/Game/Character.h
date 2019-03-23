@@ -24,6 +24,7 @@ protected:
 	void MoveBackward(float Val);
 	void MoveRight(float Val);
 	void MoveLeft(float Val);
+	void EndGame();
 	
 private:
 	

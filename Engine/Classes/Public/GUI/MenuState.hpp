@@ -4,6 +4,7 @@
 #include "Classes/Public/Core/State.h"
 
 class Button;
+class Canvas;
 
 class MenuState : public State
 {
@@ -20,13 +21,15 @@ public:
 	virtual void OnStateKilled() override;
 	virtual void UpdateInput(const float& Delta) override;
 
+	Canvas* GetCanvas() const;
+	
 protected:
 
 
 
 private:
 
-	Button* TestButton;
+	Canvas* TestCanvas;
 	
 	sf::RectangleShape BackgroundImage;
 };

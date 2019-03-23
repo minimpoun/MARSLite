@@ -4,26 +4,27 @@
 #include "Source/Utility/FileManager.hpp"
 #include "Source/Utility/ResourceManager.hpp"
 #include "Source/Utility/ResouceContainer.h"
-#include "Classes/Public/Game/GameState.hpp"
+#include "Classes/Public/Game/BaseGameState.hpp"
 #include "Classes/Public/GUI/MenuState.hpp"
 
 using namespace MARS;
 
-Application::Application()
+Application::Application(const ApplicationSettings& Settings)
 {
-	BaseGameState = nullptr;
+	GameState = nullptr;
 	
-	InitApplication();
-	RegisterStates();
+	InitApplication(Settings.Title, Settings.Width, Settings.Height);
 }
 
 Application::~Application()
 {
-	LOG("Test")
+	LOG("Application Destroyed")
 }
 
 void Application::Shutdown()
 {
+	LOG("Application Shutting Down")
+	
 	delete Window;
 	
 	while (!States.empty())
@@ -33,7 +34,7 @@ void Application::Shutdown()
 	}
 }
 
-void Application::InitApplication(String Title, int w, int h)
+void Application::InitApplication(String Title, int32 Width, int32 Height)
 {
 	bool EnableFramerateLock = true;
 	bool EnableVSync = false;
@@ -51,7 +52,7 @@ void Application::InitApplication(String Title, int w, int h)
 		else
 		{
 			LOG("Loaded Default MARS Config Files")
-		}	
+		}
 	
 		_FM->Get("Title", Title);
 
@@ -59,14 +60,14 @@ void Application::InitApplication(String Title, int w, int h)
 		_FM->Get("MaxFPS", MaxFPS);
 		_FM->Get("ShowStats", bShowStats);
 		
-		_FM->Get("ResolutionWidth", w);
-		_FM->Get("ResolutionHeight", h);
+		_FM->Get("ResolutionWidth", Width);
+		_FM->Get("ResolutionHeight", Height);
 
 		_FM->Get("EnableVSync", EnableVSync);
 	}
 }
 
-	Window = new sf::RenderWindow(sf::VideoMode(w, h), Title);
+	Window = new sf::RenderWindow(sf::VideoMode(Width, Height), Title);
 	if (Window)
 	{
 		LOG("Target Created Successfully")
@@ -78,13 +79,22 @@ void Application::InitApplication(String Title, int w, int h)
 			Window->setFramerateLimit(MaxFPS);
 		}
 	}
+	
+	if (!GameState)
+	{
+		GameState = ConstructState<BaseGameState>();
+	}
 }
 
-void Application::RegisterStates()
+bool Application::PushState(State* InState)
 {
-	BaseGameState = new GameState(Window);
-	States.push(new MenuState(Window));
-	States.top()->OnConstruct();
+	if (InState)
+	{
+		States.push(InState);
+		return true;
+	}
+	
+	return false;
 }
 
 void Application::Run()

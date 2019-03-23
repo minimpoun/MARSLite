@@ -2,10 +2,9 @@
 #include <Classes/Public/GUI/Button.h>
 #include <Source/Utility/ResouceContainer.h>
 
-Button::Button(const String& InText, const String& InFont, sf::Color InNormalColor, sf::Color InHoverColor,
-				sf::Color InClickedColor, float xPos, float yPos, float Width, float Height)
+Button::Button()
 {
-	CurrentState = ButtonState::Normal;
+/*	CurrentState = ButtonState::Normal;
 	
 	ButtonShape.setPosition(sf::Vector2f(xPos, yPos));
 	ButtonShape.setSize(sf::Vector2f(Width, Height));
@@ -21,12 +20,20 @@ Button::Button(const String& InText, const String& InFont, sf::Color InNormalCol
 	HoverColor = InHoverColor;
 	ClickedColor = InClickedColor;
 	
-	ButtonShape.setFillColor(NormalColor);
+	ButtonShape.setFillColor(NormalColor);*/
 }
 
 Button::~Button()
 {
 
+}
+
+void Button::SetStyle(const ButtonStyle& InStyle)
+{
+	ButtonShape.setSize(InStyle.Size);
+	NormalColor = InStyle.Normal.WidgetColor;
+	HoverColor = InStyle.Hovered.WidgetColor;
+	ClickedColor = InStyle.Clicked.WidgetColor;
 }
 
 void Button::Draw(sf::RenderTarget* Target)
@@ -35,21 +42,25 @@ void Button::Draw(sf::RenderTarget* Target)
 	Target->draw(Text);
 }
 
+// @TODO(Chrisr): The way this is handled is ass, I know. I threw this together for testing
 void Button::Update(const sf::Vector2f& MousePos)
 {
-	if (ButtonShape.getGlobalBounds().contains(MousePos) && CurrentState != ButtonState::Hovered)
+	if (ButtonShape.getGlobalBounds().contains(MousePos) && CurrentState != ButtonState::Clicked)
 	{
-		CurrentState = ButtonState::Hovered;
-		ButtonShape.setFillColor(HoverColor);
-
-		OnHovered();
-		
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			ButtonState::Clicked;
+			CurrentState = ButtonState::Clicked;
 			ButtonShape.setFillColor(ClickedColor);
 			
 			OnClicked();
+		}
+		
+		if (CurrentState != ButtonState::Hovered && CurrentState != ButtonState::Clicked)
+		{
+			CurrentState = ButtonState::Hovered;
+			ButtonShape.setFillColor(HoverColor);
+			
+			OnHovered();
 		}
 	}
 	

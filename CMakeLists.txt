@@ -21,7 +21,7 @@ file(GLOB_RECURSE SRCS
 	${MARSLite_SOURCE_DIR}/Engine/Classes/*.cpp
 )
 
-find_package(SFML REQUIRED)
+#find_package(SFML REQUIRED)
 
 include_directories(
 	${MARSLite_SOURCE_DIR}/Engine/
@@ -36,7 +36,7 @@ link_directories(
 add_executable(MARSLite ${HDRS} ${SRCS})
 
 target_link_libraries( MARSLite
-	${SFML_LIBRARIES}
+#	${SFML_LIBRARIES}
 	libsfml-graphics.so
 	libsfml-audio.so
 	libsfml-network.so

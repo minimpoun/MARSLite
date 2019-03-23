@@ -7,14 +7,14 @@ class Character;
 class Actor;
 class Whatever;
 
-class GameState : public State
+class BaseGameState : public State
 {
 public:
 	
-	GameState(){}
+	BaseGameState(){}
 
-	explicit GameState(sf::RenderWindow* InWindow);
-	virtual ~GameState();
+	explicit BaseGameState(sf::RenderWindow* InWindow);
+	virtual ~BaseGameState();
 
 	virtual void OnConstruct() override;
 	virtual void TickState(const float& DeltaTime) override;

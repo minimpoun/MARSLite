@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Common.h"
-#include "State.h"
+#include "Classes/Public/Core/State.h"
 
-class GameState;
+class BaseGameState;
 
 struct ApplicationSettings
 {
@@ -38,22 +38,40 @@ class Application
 {
 public:
 	
-	Application();
+	Application(const ApplicationSettings& Settings);
 	virtual ~Application();
 
 	void ParseConsole(int cnt, char** cmd){}
 	
-	virtual void Render();
-	virtual void Tick();
-	virtual void Run();
-	virtual void HandleEvents();
+	bool PushState(State* InState);
 	
+	virtual void Run();
 	virtual void Shutdown();
+
+	State* TryGetState() const
+	{
+		return States.top();
+	}
+	
+	template<typename T>
+	T* ConstructState()
+	{
+		T* _T = new T(Window);
+		if (PushState(_T))
+		{
+			States.top()->OnConstruct();
+			return _T;
+		}
+		
+		return nullptr;
+	}
 	
 protected:
-
-	virtual void InitApplication(String Title = "MARS Lite", int w = 800, int h = 600);
-	virtual void RegisterStates();
+	
+	virtual void HandleEvents();
+	virtual void Render();
+	virtual void Tick();
+	virtual void InitApplication(String Title, int32 Width, int32 Height);
 	
 private:
 
@@ -66,7 +84,7 @@ private:
 	
 	bool bShowStats;
 	
-	GameState* BaseGameState;
+	BaseGameState* GameState;
 	
 	std::stack<State*> States;
 	

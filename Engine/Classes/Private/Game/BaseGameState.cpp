@@ -1,26 +1,27 @@
 
-#include <Classes/Public/Game/GameState.hpp>
+#include <Classes/Public/Game/BaseGameState.hpp>
+#include <Classes/Public/Core/EngineStatics.hpp>
 
 #include "Classes/Public/Game/Actor.h"
 #include "Classes/Public/Game/Character.h"
 
-GameState::GameState(sf::RenderWindow* InWindow)
+BaseGameState::BaseGameState(sf::RenderWindow* InWindow)
 	: State(InWindow)
 {
-
+	StateName = "BaseGameState";
 }
 
-GameState::~GameState()
+BaseGameState::~BaseGameState()
 {
 	delete TestPlayer;
 }
 
-void GameState::OnStateKilled()
+void BaseGameState::OnStateKilled()
 {
 
 }
 
-void GameState::TickState(const float& DeltaTime)
+void BaseGameState::TickState(const float& DeltaTime)
 {
 	UpdateMousePosition();
 	UpdateInput(DeltaTime);
@@ -28,7 +29,7 @@ void GameState::TickState(const float& DeltaTime)
 	TestPlayer->Tick(DeltaTime);
 }
 
-void GameState::Draw(sf::RenderTarget* InTarget)
+void BaseGameState::Draw(sf::RenderTarget* InTarget)
 {
 	if (!InTarget)
 	{
@@ -38,7 +39,7 @@ void GameState::Draw(sf::RenderTarget* InTarget)
 	TestPlayer->Draw(InTarget);
 }
 
-void GameState::UpdateInput(const float& DeltaTime)
+void BaseGameState::UpdateInput(const float& DeltaTime)
 {
 	/** @TODO(Chrisr): This needs to be totally reworked
 	 * @brief So, first off IDK why I set this up to call back into Actor.
@@ -54,7 +55,7 @@ void GameState::UpdateInput(const float& DeltaTime)
 	}
 }
 
-void GameState::OnConstruct()
+void BaseGameState::OnConstruct()
 {
 	TestPlayer = new Character;
 	TestPlayer->OnConstruct();

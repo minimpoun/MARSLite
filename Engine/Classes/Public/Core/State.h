@@ -24,6 +24,8 @@ public:
 
 protected:
 	
+	String StateName;
+	
 	sf::Vector2i MousePos_Screen;
 	sf::Vector2i MousePos_Window;
 	sf::Vector2f MousePos_Viewport;

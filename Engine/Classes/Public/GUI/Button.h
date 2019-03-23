@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Common.h"
+#include "Classes/Public/GUI/Widget.h"
 
 enum class ButtonState
 {
@@ -9,22 +10,20 @@ enum class ButtonState
 	Clicked,
 };
 
-class Button
+class Button : public Widget
 {
 public:
 	
-	Button(const String& InText, const String& InFont, sf::Color InNormalColor, sf::Color InHoverColor, sf::Color InClickedColor, float xPos, float yPos, float Width, float Height);
+	Button();
 	virtual ~Button();
 
-	void Draw(sf::RenderTarget* Target);
-	
-	const bool& IsPressed() const { return CurrentState == ButtonState::Clicked; }
+	void Draw(sf::RenderTarget* Target) override;
+	virtual void SetStyle(const ButtonStyle& InStyle);
+	virtual void Update(const sf::Vector2f& MousePos) override;
 	
 	void OnNormal();
 	void OnClicked();
 	void OnHovered();
-	
-	void Update(const sf::Vector2f& MousePos);
 	
 private:
 	
