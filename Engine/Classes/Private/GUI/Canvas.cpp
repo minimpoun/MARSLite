@@ -4,7 +4,7 @@
 
 Canvas::Canvas()
 {
-	LOG("Test")
+	LOG("Canvas Created")
 }
 
 Canvas::~Canvas()
@@ -28,13 +28,25 @@ bool Canvas::SetWidgetVisibility(String Widget, EVisibility NewVisibility)
 	if (It != Widgets.end())
 	{
 		It->second->SetVisibility(NewVisibility);
+		return true;
 	}
+	
+	return false;
 }
 
-Widget* Canvas::GetWidget(const String&) const
+Widget* Canvas::GetWidget(const String& Name) const
 {
 	auto It = Widgets.begin();
-	return It != Widgets.end() ? It->second : nullptr;
+	for (; It != Widgets.end(); ++It)
+	{
+		if (It->first == Name)
+		{
+			return It->second;
+		}
+	}
+	
+	FMT_LOG("Canvas does not contain %s", Name.c_str())
+	return nullptr;
 }
 
 void Canvas::DrawCanvas(sf::RenderTarget* Target)
@@ -62,4 +74,16 @@ void Canvas::RefreshWidgets(const sf::Vector2f& MousePos)
 			It->second->Update(MousePos);
 		}
 	}
+}
+
+bool Canvas::IsValid(Widget* In) const
+{
+	return IsValid(In->GetName());
+}
+
+bool Canvas::IsValid(const String& In) const
+{
+	auto It = Widgets.find(In);
+	return It != Widgets.end() && It->second;
+	
 }

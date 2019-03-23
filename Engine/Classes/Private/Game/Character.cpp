@@ -55,6 +55,7 @@ void Character::SetupPlayerInput()
 
 void Character::EndGame()
 {
+	// Constructs the MenuState and swaps to it.
 	auto* _MenuState = EngineStatics::GetApplication()->ConstructState<MenuState>();
 	if (_MenuState)
 	{

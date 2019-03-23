@@ -46,6 +46,8 @@ public:
 	virtual void Draw(sf::RenderTarget* Target);
 	virtual void Update(const sf::Vector2f& MousePos);
 	
+	const String& GetName() const { return Name; }
+	
 	virtual void SetVisibility(EVisibility NewVis);
 	EVisibility GetVisibility() const { return CurrentVisibility; }
 	

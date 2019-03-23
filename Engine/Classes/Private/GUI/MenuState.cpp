@@ -18,6 +18,13 @@ MenuState::~MenuState()
 void MenuState::OnConstruct()
 {
 	TestCanvas = new Canvas();
+	
+	ButtonStyle _BS;
+	_BS.Size = sf::Vector2f(100.f,100.f);
+	_BS.Normal.WidgetColor = sf::Color::White;
+	_BS.Hovered.WidgetColor = sf::Color::Blue;
+	_BS.Clicked.WidgetColor = sf::Color::Green;
+	GetCanvas()->CreateWidget<Button>("TestButton2", _BS);
 }
 
 void MenuState::TickState(const float& DeltaTime)
@@ -27,11 +34,20 @@ void MenuState::TickState(const float& DeltaTime)
 	// this is here to test the visibility rendering
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 	{
-		GetCanvas()->GetWidget("TestButton")->SetVisibility(EVisibility::Hidden);
+		auto* Button = GetCanvas()->GetWidget("TestButton");
+		if (Button)
+		{
+			Button->SetVisibility(EVisibility::Hidden);
+		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 	{
-		GetCanvas()->GetWidget("TestButton")->SetVisibility(EVisibility::VisibleWithHitDetection);
+		ButtonStyle _BS;
+		_BS.Size = sf::Vector2f(100.f,100.f);
+		_BS.Normal.WidgetColor = sf::Color::White;
+		_BS.Hovered.WidgetColor = sf::Color::Blue;
+		_BS.Clicked.WidgetColor = sf::Color::Green;
+		GetCanvas()->CreateWidget<Button>("TestButton2", _BS);
 	}
 }
 

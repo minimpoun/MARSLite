@@ -19,7 +19,10 @@ public:
 	bool SetWidgetPosition(String Widget, sf::Vector2f NewPos);
 	bool SetWidgetVisibility(String Widget, EVisibility NewVisibility);
 	
-	Widget* GetWidget(const String&) const;
+	Widget* GetWidget(const String& Name) const;
+	
+	bool IsValid(Widget* In) const;
+	bool IsValid(const String& In) const;
 	
 	void DrawCanvas(sf::RenderTarget* Target);
 
@@ -34,6 +37,12 @@ private:
 template<typename T, typename S>
 T* Canvas::CreateWidget(String WidgetName, S InStyle)
 {
+	if (IsValid(WidgetName))
+	{
+		FMT_LOG("%s already exists, use GetWidget(%s) instead", WidgetName.c_str(), WidgetName.c_str())
+		return nullptr;
+	}
+	
 	T* Widget = new T();
 	if (Widget)
 	{
@@ -45,3 +54,4 @@ T* Canvas::CreateWidget(String WidgetName, S InStyle)
 	
 	return nullptr;
 }
+

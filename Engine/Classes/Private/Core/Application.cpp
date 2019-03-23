@@ -82,7 +82,8 @@ void Application::InitApplication(String Title, int32 Width, int32 Height)
 	
 	if (!GameState)
 	{
-		GameState = ConstructState<BaseGameState>();
+		//GameState =
+		ConstructState<MenuState>();
 	}
 }
 
@@ -134,12 +135,12 @@ void Application::Render()
 {
 	Window->clear();
 	
-	DrawFPS(bShowStats);
-	
 	if (!States.empty())
 	{
 		States.top()->Draw(Window);
 	}
+	
+	DrawFPS(bShowStats);
 	
 	Window->display();
 }
